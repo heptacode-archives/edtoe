@@ -78,9 +78,34 @@ loop:
 		cmd2 = 0;
 		if (cmd == 0xe0) {
 			cmd2 = _getch();
-			if (cmd2 == 0x25) {
-				cout << "asdkjabfkjabf";
+			/*
+				╩С	72
+				аб	75
+				©Л	77
+				го	80
+			*/
+			switch (cmd2) {
+				case 72:
+					cout << "╩С";
+					pos[1] = pos[1] < 2 ? ++pos[1] : 0;
+					break;
+
+				case 75:
+					cout << "аб";
+					pos[0] = pos[0] > 0 ? --pos[0] : 2;
+					break;
+
+				case 77:
+					cout << "©Л";
+					pos[0] = pos[0] < 2 ? ++pos[0] : 0;
+					break;
+
+				case 80:
+					cout << "го";
+					pos[1] = pos[1] > 0 ? --pos[1] : 2;
+					break;
 			}
+			cout << pos[0] << ", " << pos[1];
 		}
 	}
 	goto loop;
