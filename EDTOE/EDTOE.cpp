@@ -1,4 +1,3 @@
-#include <iostream>
 #include "MainScene.h"
 
 int main() {

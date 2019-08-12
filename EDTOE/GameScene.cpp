@@ -1,7 +1,6 @@
-#include "GameScene.h"
 #include "CustomFunctions.h"
+#include "GameScene.h"
 #include "MainScene.h"
-#include "Player.h"
 using namespace std;
 
 GameScene::GameScene() {
@@ -195,9 +194,12 @@ loop:
 					PrintX(46, 29);
 				}
 			}
+			CheckStatus();
 		}
 	}
-	goto loop;
+	if(gameLoop){
+		goto loop;
+	}
 }
 
 void GameScene::PrintO(int col, int line) {
@@ -220,10 +222,11 @@ void GameScene::PrintO(int col, int line) {
 	cout << "  бс            бс";
 	gotoxy(col, ++line);
 	cout << "    бсбсбсбсбсбс";
-	gotoxy(col + 19, line);
 
 	turn = turn == 0 ? 1 : 0;
 	PrintTurn();
+	turnCnt++;
+	gotoxy(col + 19, line);
 }
 
 void GameScene::PrintX(int col, int line) {
@@ -246,10 +249,11 @@ void GameScene::PrintX(int col, int line) {
 	cout << "  бс            бс";
 	gotoxy(col, ++line);
 	cout << "бс                бс";
-	gotoxy(col + 19, line);
 
 	turn = turn == 0 ? 1 : 0;
 	PrintTurn();
+	turnCnt++;
+	gotoxy(col + 19, line);
 }
 
 void GameScene::PrintTurn() {
@@ -302,6 +306,126 @@ void GameScene::PrintTurn() {
 		gotoxy(52, 6);
 		cout << "бс         бс";
 	}
+}
+
+void GameScene::CheckStatus() {
+	for (int i = 0; i < 3; i++) {
+		// ░б╖╬ ╞╟║░
+		if (tile[i][0] == 0 && tile[i][1] == 0 && tile[i][2] == 0) { // O ╜┬
+			GameOver(0);
+			return;
+		}
+		else if (tile[i][0] == 0 && tile[i][1] == 0 && tile[i][2] == 0) { // X ╜┬
+			GameOver(1);
+			return;
+		}
+		// ╝╝╖╬ ╞╟║░
+		else if (tile[0][i] == 0 && tile[1][i] == 0 && tile[2][i] == 0) { // O ╜┬
+			GameOver(0);
+			return;
+		}
+		else if (tile[0][i] == 1 && tile[1][i] == 1 && tile[2][i] == 1) { // X ╜┬
+			GameOver(1);
+			return;
+		}
+	}
+	// ┤ы░в╝▒ ╞╟║░
+	if (tile[0][0] == 0 && tile[1][1] == 0 && tile[2][2] == 0) { // O ╜┬
+		GameOver(0);
+		return;
+	}
+	else if (tile[0][0] == 1 && tile[1][1] == 1 && tile[2][2] == 1) { // X ╜┬
+		GameOver(0);
+		return;
+	}
+	else if (tile[0][2] == 0 && tile[1][1] == 0 && tile[2][0] == 0) { // O ╜┬
+		GameOver(0);
+		return;
+	}
+	else if (tile[0][2] == 1 && tile[1][1] == 1 && tile[2][0] == 1) { // X ╜┬
+		GameOver(1);
+		return;
+	}
+	// ╣л╜┬║╬ ╞╟║░
+	if (turnCnt >= 9) {
+		GameOver(2); // ╣л╜┬║╬
+		return;
+	}
+
+}
+
+void GameScene::GameOver(int i) {
+	gameLoop = 0;
+	color(0, 0);
+	gotoxy(4, 2);
+	for (int i = 1; i < 9; i++) {
+		for (int j = 0; j < 32; j++) {
+			cout << "  ";
+		}
+		gotoxy(4, i);
+	}
+	if (i == 0) { // O ╜┬
+		color(0, 7);
+		gotoxy(0, 1);
+		cout << "    бсбсбсбс";
+		gotoxy(0, 2);
+		cout << "  бс        бс";
+		gotoxy(0, 3);
+		cout << "  бс        бс";
+		gotoxy(0, 4);
+		cout << "  бс        бс";
+		gotoxy(0, 5);
+		cout << "  бс        бс";
+		gotoxy(0, 6);
+		cout << "    бсбсбсбс";
+	}
+	else if (i == 1) { // X ╜┬
+		color(0, 7);
+		gotoxy(0, 1);
+		cout << "бс         бс";
+		gotoxy(0, 2);
+		cout << "  бс     бс";
+		gotoxy(0, 3);
+		cout << "    бс бс";
+		gotoxy(0, 4);
+		cout << "    бс бс";
+		gotoxy(0, 5);
+		cout << "  бс     бс";
+		gotoxy(0, 6);
+		cout << "бс         бс";
+	}
+	else if (i == 2) { // ╣л╜┬║╬
+		color(0, 6);
+		gotoxy(8, 1);
+		cout << "бсбсбсбс      бсбсбсбс          бс      бс        бс";
+		gotoxy(8, 2);
+		cout << "бс      бс    бс      бс      бс  бс    бс        бс";
+		gotoxy(8, 3);
+		cout << "бс      бс    бс      бс     бс    бс   бс        бс";
+		gotoxy(8, 4);
+		cout << "бс      бс    бсбсбсбс      бсбсбсбсбс  бс   бс   бс";
+		gotoxy(8, 5);
+		cout << "бс      бс    бс      бс    бс      бс  бс бс  бс бс";
+		gotoxy(8, 6);
+		cout << "бсбсбсбс      бс       бс   бс      бс  бс        бс";
+
+	}
+	if (i < 2) {
+		color(0, 9);
+		gotoxy(16, 1);
+		cout << "бс        бс  бсбсбс  бс       бс    бсбсбсбс   бс";
+		gotoxy(16, 2);
+		cout << "бс        бс    бс    бс    бс бс  бс           бс";
+		gotoxy(16, 3);
+		cout << "бс        бс    бс    бс   бс  бс    бсбсбс     бс";
+		gotoxy(16, 4);
+		cout << "бс   бс   бс    бс    бс  бс   бс          бс   бс";
+		gotoxy(16, 5);
+		cout << "бс бс  бс бс    бс    бс бс    бс          бс";
+		gotoxy(16, 6);
+		cout << "бс        бс  бсбсбс  бс       бс  бсбсбсбс     бс";
+	}
+	gotoxy(66, 38);
 }
 
 GameScene::~GameScene() {

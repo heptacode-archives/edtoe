@@ -6,6 +6,8 @@ class GameScene {
 	int turn = 0;
 	int cmd = 0;
 	int cmd2 = 0;
+	int gameLoop = 1;
+	int turnCnt = 0;
 public:
 	GameScene();
 	void ClearGrid();
@@ -14,5 +16,7 @@ public:
 	void PrintO(int col, int line);
 	void PrintX(int col, int line);
 	void PrintTurn();
+	void CheckStatus();
+	void GameOver(int i);
 	~GameScene();
 };
