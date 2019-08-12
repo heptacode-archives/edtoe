@@ -78,7 +78,11 @@ void MainScene::PrintLogo() {
 void MainScene::PrintBorder() {
 	color(0, 7);
 	gotoxy(2, 8);
-	cout << "忙式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式忖";
+	cout << "忙";
+	for (int i = 0; i < 59; i++) {
+		cout << "式";
+	}
+	cout << "忖";
 	for (int i = 9; i < 35; i++) {
 		gotoxy(2, i);
 		cout << "弛";
@@ -86,13 +90,11 @@ void MainScene::PrintBorder() {
 		cout << "弛";
 	}
 	gotoxy(2, 35);
-	cout << "戌式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式戎";
-
-
-
-
-
-
+	cout << "戌";
+	for (int i = 0; i < 59; i++) {
+		cout << "式";
+	}
+	cout << "戎";
 
 
 
