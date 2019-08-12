@@ -155,13 +155,11 @@
     <ClCompile Include="EDTOE.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="MainScene.cpp" />
-    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomFunctions.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="MainScene.h" />
-    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

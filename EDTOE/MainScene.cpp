@@ -12,7 +12,7 @@ void MainScene::InitGame() {
 }
 
 void MainScene::ConsoleSize() {
-	system("mode con cols=66 lines=40");
+	system("mode con cols=68 lines=40");
 }
 
 void MainScene::PrintLogo() {

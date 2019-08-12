@@ -27,7 +27,7 @@ void GameScene::PrintGrid() {
 		cout << "¦¢";
 	}
 	gotoxy(2, 18);
-	for (int i = 0; i < 61; i++) {
+	for (int i = 0; i < 63; i++) {
 		if (i == 20 || i == 42) {
 			cout << "¦«";
 		}
@@ -44,7 +44,7 @@ void GameScene::PrintGrid() {
 		cout << "¦¢";
 	}
 	gotoxy(2, 28);
-	for (int i = 0; i < 61; i++) {
+	for (int i = 0; i < 63; i++) {
 		if (i == 20 || i == 42) {
 			cout << "¦«";
 		}
@@ -52,63 +52,256 @@ void GameScene::PrintGrid() {
 			cout << "¦¡";
 		}
 	}
-	for (int i = 29; i < 39; i++) {
+	for (int i = 28; i < 38; i++) {
 		gotoxy(22, i);
 		cout << "¦¢";
 	}
-	for (int i = 29; i < 39; i++) {
+	for (int i = 28; i < 38; i++) {
 		gotoxy(44, i);
 		cout << "¦¢";
-	}
-	gotoxy(1, 1);
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 3; j++) {
-			cout << tile[i][j];
-		}
-		cout << "\n";
 	}
 }
 
 void GameScene::Play() {
 	ClearGrid();
 	PrintGrid();
+	PrintTurn();
+	gotoxy(43, 27);
 loop:
 	if (_kbhit()) {
 		cmd = _getch();
-		cmd2 = 0;
-		if (cmd == 0xe0) {
+		if (cmd == 0xe0) { // ARROW KEYS
 			cmd2 = _getch();
-			/*
-				»ó	72
-				ÁÂ	75
-				¿ì	77
-				ÇÏ	80
-			*/
 			switch (cmd2) {
-				case 72:
-					cout << "»ó";
-					pos[1] = pos[1] < 2 ? ++pos[1] : 0;
-					break;
-
-				case 75:
-					cout << "ÁÂ";
+				case 72: // »ó
 					pos[0] = pos[0] > 0 ? --pos[0] : 2;
 					break;
 
-				case 77:
-					cout << "¿ì";
-					pos[0] = pos[0] < 2 ? ++pos[0] : 0;
-					break;
-
-				case 80:
-					cout << "ÇÏ";
+				case 75: // ÁÂ
 					pos[1] = pos[1] > 0 ? --pos[1] : 2;
 					break;
+
+				case 77: // ¿ì
+					pos[1] = pos[1] < 2 ? ++pos[1] : 0;
+					break;
+
+				case 80: // ÇÏ
+					pos[0] = pos[0] < 2 ? ++pos[0] : 0;
+					break;
 			}
-			cout << pos[0] << ", " << pos[1];
+
+			if (pos[0] == 0 && pos[1] == 0) { // (0, 0)
+				gotoxy(21, 17);
+			}
+			else if (pos[0] == 0 && pos[1] == 1) { // (0, 1)
+				gotoxy(43, 17);
+			}
+			else if (pos[0] == 0 && pos[1] == 2) { // (0, 2)
+				gotoxy(65, 17);
+			}
+			else if (pos[0] == 1 && pos[1] == 0) { // (1, 0)
+				gotoxy(21, 27);
+			}
+			else if (pos[0] == 1 && pos[1] == 1) { // (1, 1)
+				gotoxy(43, 27);
+			}
+			else if (pos[0] == 1 && pos[1] == 2) { // (1, 2)
+				gotoxy(65, 27);
+			}
+			else if (pos[0] == 2 && pos[1] == 0) { // (2, 0)
+				gotoxy(21, 37);
+			}
+			else if (pos[0] == 2 && pos[1] == 1) { // (2, 1)
+				gotoxy(43, 37);
+			}
+			else if (pos[0] == 2 && pos[1] == 2) { // (2, 2)
+				gotoxy(65, 37);
+			}
+		}
+		else if (cmd == 32) { // SPACE BAR
+			if (turn == 0) { // OÀÇ Â÷·Ê
+				if (pos[0] == 0 && pos[1] == 0 && tile[0][0] == -1) {  // (0, 0)
+					tile[0][0] = 0;
+					PrintO(2, 9);
+				}
+				else if (pos[0] == 0 && pos[1] == 1 && tile[0][1] == -1) {  // (0, 1)
+					tile[0][1] = 0;
+					PrintO(24, 9);
+				}
+				else if (pos[0] == 0 && pos[1] == 2 && tile[0][2] == -1) {  // (0, 2)
+					tile[0][2] = 0;
+					PrintO(46, 9);
+				}
+				else if (pos[0] == 1 && pos[1] == 0 && tile[1][0] == -1) {  // (1, 0)
+					tile[1][0] = 0;
+					PrintO(2, 19);
+				}
+				else if (pos[0] == 1 && pos[1] == 1 && tile[1][1] == -1) {  // (1, 1)
+					tile[1][1] = 0;
+					PrintO(24, 19);
+				}
+				else if (pos[0] == 1 && pos[1] == 2 && tile[1][2] == -1) {  // (1, 2)
+					tile[1][2] = 0;
+					PrintO(46, 19);
+				}
+				else if (pos[0] == 2 && pos[1] == 0 && tile[2][0] == -1) {  // (2, 0)
+					tile[2][0] = 0;
+					PrintO(2, 29);
+				}
+				else if (pos[0] == 2 && pos[1] == 1 && tile[2][1] == -1) {  // (2, 1)
+					tile[2][1] = 0;
+					PrintO(24, 29);
+				}
+				else if (pos[0] == 2 && pos[1] == 2 && tile[2][2] == -1) {  // (2, 2)
+					tile[2][2] = 0;
+					PrintO(46, 29);
+				}
+			}
+			else if (turn == 1) { // XÀÇ Â÷·Ê
+				if (pos[0] == 0 && pos[1] == 0 && tile[0][0] == -1) {  // (0, 0)
+					tile[0][0] = 1;
+					PrintX(2, 9);
+				}
+				else if (pos[0] == 0 && pos[1] == 1 && tile[0][1] == -1) {  // (0, 1)
+					tile[0][1] = 1;
+					PrintX(24, 9);
+				}
+				else if (pos[0] == 0 && pos[1] == 2 && tile[0][2] == -1) {  // (0, 2)
+					tile[0][2] = 1;
+					PrintX(46, 9);
+				}
+				else if (pos[0] == 1 && pos[1] == 0 && tile[1][0] == -1) {  // (1, 0)
+					tile[1][0] = 1;
+					PrintX(2, 19);
+				}
+				else if (pos[0] == 1 && pos[1] == 1 && tile[1][1] == -1) {  // (1, 1)
+					tile[1][1] = 1;
+					PrintX(24, 19);
+				}
+				else if (pos[0] == 1 && pos[1] == 2 && tile[1][2] == -1) {  // (1, 2)
+					tile[1][2] = 1;
+					PrintX(46, 19);
+				}
+				else if (pos[0] == 2 && pos[1] == 0 && tile[2][0] == -1) {  // (2, 0)
+					tile[2][0] = 1;
+					PrintX(2, 29);
+				}
+				else if (pos[0] == 2 && pos[1] == 1 && tile[2][1] == -1) {  // (2, 1)
+					tile[2][1] = 1;
+					PrintX(24, 29);
+				}
+				else if (pos[0] == 2 && pos[1] == 2 && tile[2][2] == -1) {  // (2, 2)
+					tile[2][2] = 1;
+					PrintX(46, 29);
+				}
+			}
 		}
 	}
 	goto loop;
+}
+
+void GameScene::PrintO(int col, int line) {
+	color(0, 2);
+	gotoxy(col, line);
+	cout << "    ¡á¡á¡á¡á¡á¡á";
+	gotoxy(col, ++line);
+	cout << "  ¡á            ¡á";
+	gotoxy(col, ++line);
+	cout << "¡á                ¡á";
+	gotoxy(col, ++line);
+	cout << "¡á                ¡á";
+	gotoxy(col, ++line);
+	cout << "¡á                ¡á";
+	gotoxy(col, ++line);
+	cout << "¡á                ¡á";
+	gotoxy(col, ++line);
+	cout << "¡á                ¡á";
+	gotoxy(col, ++line);
+	cout << "  ¡á            ¡á";
+	gotoxy(col, ++line);
+	cout << "    ¡á¡á¡á¡á¡á¡á";
+	gotoxy(col + 19, line);
+
+	turn = turn == 0 ? 1 : 0;
+	PrintTurn();
+}
+
+void GameScene::PrintX(int col, int line) {
+	color(0, 4);
+	gotoxy(col, line);
+	cout << "¡á                ¡á";
+	gotoxy(col, ++line);
+	cout << "  ¡á            ¡á";
+	gotoxy(col, ++line);
+	cout << "    ¡á        ¡á";
+	gotoxy(col, ++line);
+	cout << "      ¡á    ¡á";
+	gotoxy(col, ++line);
+	cout << "        ¡á¡á";
+	gotoxy(col, ++line);
+	cout << "      ¡á    ¡á";
+	gotoxy(col, ++line);
+	cout << "    ¡á        ¡á";
+	gotoxy(col, ++line);
+	cout << "  ¡á            ¡á";
+	gotoxy(col, ++line);
+	cout << "¡á                ¡á";
+	gotoxy(col + 19, line);
+
+	turn = turn == 0 ? 1 : 0;
+	PrintTurn();
+}
+
+void GameScene::PrintTurn() {
+	color(0, 0);
+	gotoxy(4, 2);
+	for (int i = 1; i < 9; i++) {
+		for (int j = 0; j < 32; j++) {
+			cout << "  ";
+		}
+		gotoxy(4, i);
+	}
+	color(0, 6);
+	gotoxy(24, 2);
+	cout << "¡á       ¡á     ¡á¡á¡á¡á";
+	gotoxy(24, 3);
+	cout << " ¡á     ¡á    ¡á";
+	gotoxy(24, 4);
+	cout << "  ¡á   ¡á       ¡á¡á¡á";
+	gotoxy(24, 5);
+	cout << "   ¡á ¡á              ¡á";
+	gotoxy(24, 6);
+	cout << "    ¡á        ¡á¡á¡á¡á";
+
+	color(0, 7);
+	if (turn == 0) { // OÀÇ Â÷·Ê
+		gotoxy(4, 1);
+		cout << "    ¡á¡á¡á¡á";
+		gotoxy(4, 2);
+		cout << "  ¡á        ¡á";
+		gotoxy(4, 3);
+		cout << "  ¡á        ¡á";
+		gotoxy(4, 4);
+		cout << "  ¡á        ¡á";
+		gotoxy(4, 5);
+		cout << "  ¡á        ¡á";
+		gotoxy(4, 6);
+		cout << "    ¡á¡á¡á¡á";
+	}
+	else if (turn == 1) { // XÀÇ Â÷·Ê
+		gotoxy(52, 1);
+		cout << "¡á         ¡á";
+		gotoxy(52, 2);
+		cout << "  ¡á     ¡á";
+		gotoxy(52, 3);
+		cout << "    ¡á ¡á";
+		gotoxy(52, 4);
+		cout << "    ¡á ¡á";
+		gotoxy(52, 5);
+		cout << "  ¡á     ¡á";
+		gotoxy(52, 6);
+		cout << "¡á         ¡á";
+	}
 }
 
 GameScene::~GameScene() {
