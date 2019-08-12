@@ -7,12 +7,12 @@ GameScene::GameScene() {
 }
 
 void GameScene::ClearGrid() {
-	gotoxy(2, 8);
-	for (int i = 8; i < 40; i++) {
+	gotoxy(0, 0);
+	for (int i = 0; i < 43; i++) {
 		for (int j = 0; j < 61; j++) {
-			cout << " ";
+			cout << "  ";
 		}
-		gotoxy(2, i);
+		gotoxy(0, i);
 	}
 }
 
@@ -426,6 +426,7 @@ void GameScene::GameOver(int i) {
 		cout << "бс        бс  бсбсбс  бс       бс  бсбсбсбс     бс";
 	}
 	gotoxy(66, 38);
+	system("pause>nul & exit");
 }
 
 GameScene::~GameScene() {

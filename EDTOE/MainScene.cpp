@@ -19,59 +19,59 @@ void MainScene::PrintLogo() {
 	system("cls");
 
 	color(0, 9);
-	gotoxy(4, 2); // E
+	gotoxy(5, 2); // E
 	cout << "¡á¡á¡á¡á¡á";
-	gotoxy(4, 3);
+	gotoxy(5, 3);
 	cout << "¡á";
-	gotoxy(4, 4);
+	gotoxy(5, 4);
 	cout << "¡á¡á¡á¡á¡á";
-	gotoxy(4, 5);
+	gotoxy(5, 5);
 	cout << "¡á";
-	gotoxy(4, 6);
+	gotoxy(5, 6);
 	cout << "¡á¡á¡á¡á¡á";
 
-	gotoxy(16, 2); // D
+	gotoxy(17, 2); // D
 	cout << "¡á¡á¡á¡á";
-	gotoxy(16, 3);
+	gotoxy(17, 3);
 	cout << "¡á      ¡á";
-	gotoxy(16, 4);
+	gotoxy(17, 4);
 	cout << "¡á      ¡á";
-	gotoxy(16, 5);
+	gotoxy(17, 5);
 	cout << "¡á      ¡á";
-	gotoxy(16, 6);
+	gotoxy(17, 6);
 	cout << "¡á¡á¡á¡á";
 
-	gotoxy(28, 2); // T
+	gotoxy(29, 2); // T
 	cout << "¡á¡á¡á¡á¡á";
-	gotoxy(32, 3);
+	gotoxy(33, 3);
 	cout << "¡á";
-	gotoxy(32, 4);
+	gotoxy(33, 4);
 	cout << "¡á";
-	gotoxy(32, 5);
+	gotoxy(33, 5);
 	cout << "¡á";
-	gotoxy(32, 6);
+	gotoxy(33, 6);
 	cout << "¡á";
 
-	gotoxy(42, 2); // O
+	gotoxy(43, 2); // O
 	cout << "¡á¡á¡á";
-	gotoxy(40, 3);
+	gotoxy(41, 3);
 	cout << "¡á      ¡á";
-	gotoxy(40, 4);
+	gotoxy(41, 4);
 	cout << "¡á      ¡á";
-	gotoxy(40, 5);
+	gotoxy(41, 5);
 	cout << "¡á      ¡á";
-	gotoxy(42, 6);
+	gotoxy(43, 6);
 	cout << "¡á¡á¡á";
 
-	gotoxy(52, 2); // E
+	gotoxy(53, 2); // E
 	cout << "¡á¡á¡á¡á¡á";
-	gotoxy(52, 3);
+	gotoxy(53, 3);
 	cout << "¡á";
-	gotoxy(52, 4);
+	gotoxy(53, 4);
 	cout << "¡á¡á¡á¡á¡á";
-	gotoxy(52, 5);
+	gotoxy(53, 5);
 	cout << "¡á";
-	gotoxy(52, 6);
+	gotoxy(53, 6);
 	cout << "¡á¡á¡á¡á¡á";
 }
 
@@ -79,35 +79,33 @@ void MainScene::PrintBorder() {
 	color(0, 7);
 	gotoxy(2, 8);
 	cout << "¦£";
-	for (int i = 0; i < 59; i++) {
+	for (int i = 0; i < 61; i++) {
 		cout << "¦¡";
 	}
 	cout << "¦¤";
-	for (int i = 9; i < 35; i++) {
+	for (int i = 9; i < 38; i++) {
 		gotoxy(2, i);
 		cout << "¦¢";
-		gotoxy(62, i);
+		gotoxy(64, i);
 		cout << "¦¢";
 	}
-	gotoxy(2, 35);
+	gotoxy(2, 38);
 	cout << "¦¦";
-	for (int i = 0; i < 59; i++) {
+	for (int i = 0; i < 61; i++) {
 		cout << "¦¡";
 	}
 	cout << "¦¥";
 
-
-
-
-	/*color(0, 7);
-	gotoxy(20, 10);
+	color(0, 7);
+	gotoxy(24, 23);
 	cout << "Press";
 	color(7, 0);
-	gotoxy(26, 10);
-	cout << "SPACE";
+	gotoxy(30, 23);
+	cout << "ANY KEY";
 	color(0, 7);
-	gotoxy(32, 10);
-	cout << "to Begin.";*/
+	gotoxy(38, 23);
+	cout << "to Begin.";
+	system("pause>nul");
 }
 
 MainScene::~MainScene() {
