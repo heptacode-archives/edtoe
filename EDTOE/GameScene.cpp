@@ -367,17 +367,17 @@ void GameScene::GameOver(int i = -1) {
 	}
 	if (i == 0) { // O ½Â
 		color(0, 7);
-		gotoxy(0, 1);
+		gotoxy(1, 1);
 		cout << "    ¡á¡á¡á¡á";
-		gotoxy(0, 2);
+		gotoxy(1, 2);
 		cout << "  ¡á        ¡á";
-		gotoxy(0, 3);
+		gotoxy(1, 3);
 		cout << "  ¡á        ¡á";
-		gotoxy(0, 4);
+		gotoxy(1, 4);
 		cout << "  ¡á        ¡á";
-		gotoxy(0, 5);
+		gotoxy(1, 5);
 		cout << "  ¡á        ¡á";
-		gotoxy(0, 6);
+		gotoxy(1, 6);
 		cout << "    ¡á¡á¡á¡á";
 	}
 	else if (i == 1) { // X ½Â
