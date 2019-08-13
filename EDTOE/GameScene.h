@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+using namespace std;
 
 class GameScene {
 	int pos[2] = { 1, 1 };
@@ -10,13 +12,10 @@ class GameScene {
 	int turnCnt = 0;
 public:
 	GameScene();
-	void ClearGrid();
-	void PrintGrid();
+	void GridMgr(string s);
 	void Play();
-	void PrintO(int col, int line);
-	void PrintX(int col, int line);
-	void PrintTurn();
-	void CheckStatus();
+	void PrintMgr(string s, int col, int line);
+	void GameMgr(string s);
 	void GameOver(int i);
 	~GameScene();
 };
