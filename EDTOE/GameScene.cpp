@@ -382,17 +382,17 @@ void GameScene::GameOver(int i = -1) {
 	}
 	else if (i == 1) { // X ╜┬
 		color(0, 7);
-		gotoxy(0, 1);
+		gotoxy(2, 1);
 		cout << "бс         бс";
-		gotoxy(0, 2);
+		gotoxy(2, 2);
 		cout << "  бс     бс";
-		gotoxy(0, 3);
+		gotoxy(2, 3);
 		cout << "    бс бс";
-		gotoxy(0, 4);
+		gotoxy(2, 4);
 		cout << "    бс бс";
-		gotoxy(0, 5);
+		gotoxy(2, 5);
 		cout << "  бс     бс";
-		gotoxy(0, 6);
+		gotoxy(2, 6);
 		cout << "бс         бс";
 	}
 	else if (i == -1) { // ╣л╜┬║╬
