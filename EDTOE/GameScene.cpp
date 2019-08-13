@@ -316,7 +316,7 @@ void GameScene::GameMgr(string s) {
 				GameOver(0);
 				return;
 			}
-			else if (tile[i][0] == 0 && tile[i][1] == 0 && tile[i][2] == 0) { // X ½Â
+			else if (tile[i][0] == 1 && tile[i][1] == 1 && tile[i][2] == 1) { // X ½Â
 				GameOver(1);
 				return;
 			}
