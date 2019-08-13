@@ -6,7 +6,7 @@ public:
 	GameScene gameScene;
 	MainScene();
 	void InitGame();
-	void ConsoleSize();
+	void InitConsole();
 	void PrintLogo();
 	void PrintBorder();
 	~MainScene();

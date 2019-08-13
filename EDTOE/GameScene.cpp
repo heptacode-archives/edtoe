@@ -395,7 +395,7 @@ void GameScene::GameOver(int i = -1) {
 		gotoxy(0, 6);
 		cout << "♂         ♂";
 	}
-	else if (i == 2) { // 公铰何
+	else if (i == -1) { // 公铰何
 		color(0, 6);
 		gotoxy(8, 1);
 		cout << "♂♂♂♂      ♂♂♂♂          ♂      ♂        ♂";

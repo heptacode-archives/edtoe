@@ -6,13 +6,15 @@ MainScene::MainScene() {
 }
 
 void MainScene::InitGame() {
-	ConsoleSize();
+	InitConsole();
 	PrintLogo();
 	PrintBorder();
 }
 
-void MainScene::ConsoleSize() {
+void MainScene::InitConsole() {
+	system("title EDTOE");
 	system("mode con cols=68 lines=40");
+	color(0, 7);
 }
 
 void MainScene::PrintLogo() {
